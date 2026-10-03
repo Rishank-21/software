@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Record and manage Navratri event expenses">
+  <title>Expenses &middot; Navratri Management</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231f2a63'/%3E%3Ctext%20x='32'%20y='43'%20font-size='34'%20font-family='sans-serif'%20font-weight='700'%20fill='%23ffb547'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="expenses">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="app"></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <div id="page-state" class="page-state" hidden></div>
+
+    <div id="page-content" hidden>
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Expenses</h1>
+          <p class="page-sub">Every purchase and payment made for the event.</p>
+        </div>
+        <div class="page-actions no-print">
+          <button class="btn btn-outline" id="btn-export" type="button">
+            <i data-lucide="download"></i> Export CSV
+          </button>
+          <button class="btn btn-primary" id="btn-add" type="button">
+            <i data-lucide="plus"></i> Add Expense
+          </button>
+        </div>
+      </header>
+
+      <div class="toolbar no-print">
+        <div class="search-box">
+          <i data-lucide="search" class="search-ico"></i>
+          <input class="input" id="search" type="search" autocomplete="off"
+                 placeholder="Search expenses, category or person&hellip;" aria-label="Search expenses">
+        </div>
+        <div class="chips" id="filters" role="group" aria-label="Filter expenses by category"></div>
+        <div class="date-range">
+          <label class="visually-hidden" for="date-from">From date</label>
+          <input class="input" id="date-from" type="date" aria-label="From date">
+          <span aria-hidden="true">to</span>
+          <label class="visually-hidden" for="date-to">To date</label>
+          <input class="input" id="date-to" type="date" aria-label="To date">
+          <button class="btn btn-ghost btn-sm" id="date-clear" type="button">Clear</button>
+        </div>
+        <span class="filter-count" id="result-count" aria-live="polite"></span>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table class="data-table" id="expenses-table">
+            <caption class="visually-hidden">All event expenses</caption>
+            <thead>
+              <tr>
+                <th scope="col">Expense</th>
+                <th scope="col">Category</th>
+                <th scope="col" class="num">Amount</th>
+                <th scope="col">Paid By</th>
+                <th scope="col">People Involved</th>
+                <th scope="col">Date</th>
+                <th scope="col" class="num">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="expenses-body"></tbody>
+          </table>
+        </div>
+        <div id="expenses-empty" hidden></div>
+        <div class="table-foot" id="expenses-foot" hidden>
+          <span id="foot-count"></span>
+          <span>Value in view: <strong id="foot-sum" class="mono"></strong></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.js"></script>
+  <script type="module" src="js/expenses.js"></script>
+<script>
+  // Firebase config is loaded from firebase-config.js (gitignored)
+</script>
+<script src="firebase-config.js"></script>
+<script type="module" src="js/firebase.js"></script>
+</body>
+</html>

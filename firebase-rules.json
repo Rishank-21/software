@@ -1,0 +1,34 @@
+{
+  "rules": {
+    "navratri": {
+      ".read": true,
+      ".write": true,
+
+      "contributors": {
+        "$contributorId": {
+          ".validate": "!newData.exists() || (newData.hasChildren(['name', 'amount']) && newData.child('name').isString() && newData.child('name').val().length > 0 && newData.child('amount').isNumber() && newData.child('amount').val() > 0)"
+        }
+      },
+
+      "expenses": {
+        "$expenseId": {
+          ".validate": "!newData.exists() || (newData.hasChildren(['title', 'amount']) && newData.child('title').isString() && newData.child('title').val().length > 0 && newData.child('amount').isNumber() && newData.child('amount').val() > 0)"
+        }
+      },
+
+      "pendingPayments": {
+        "$pendingId": {
+          ".validate": "!newData.exists() || (newData.hasChildren(['name', 'promisedAmount']) && newData.child('name').isString() && newData.child('promisedAmount').isNumber() && newData.child('promisedAmount').val() > 0)"
+        }
+      },
+
+      "settings": {
+        ".validate": "!newData.exists() || newData.hasChildren(['eventName'])"
+      },
+
+      "$other": {
+        ".validate": false
+      }
+    }
+  }
+}

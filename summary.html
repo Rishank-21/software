@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Complete financial summary and printable report">
+  <title>Financial Summary &middot; Navratri Management</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231f2a63'/%3E%3Ctext%20x='32'%20y='43'%20font-size='34'%20font-family='sans-serif'%20font-weight='700'%20fill='%23ffb547'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="summary">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="app"></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <div id="page-state" class="page-state" hidden></div>
+
+    <div id="page-content" hidden>
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Financial Summary</h1>
+          <p class="page-sub" id="summary-sub">Everything calculated live from your records.</p>
+        </div>
+        <div class="page-actions no-print">
+          <button class="btn btn-outline" id="btn-export-all" type="button">
+            <i data-lucide="download"></i> Export All CSV
+          </button>
+          <button class="btn btn-primary" id="btn-print" type="button">
+            <i data-lucide="printer"></i> Print Report
+          </button>
+        </div>
+      </header>
+
+      <section class="grid grid-4" aria-label="Financial overview">
+        <article class="stat-card tone-green">
+          <div class="stat-top">
+            <span class="stat-label">Total Collected</span>
+            <span class="stat-ico"><i data-lucide="wallet"></i></span>
+          </div>
+          <div class="stat-value" id="sum-collected">&mdash;</div>
+          <div class="stat-meta" id="sum-collected-meta"></div>
+        </article>
+        <article class="stat-card tone-red">
+          <div class="stat-top">
+            <span class="stat-label">Total Expenses</span>
+            <span class="stat-ico"><i data-lucide="trending-down"></i></span>
+          </div>
+          <div class="stat-value" id="sum-expenses">&mdash;</div>
+          <div class="stat-meta" id="sum-expenses-meta"></div>
+        </article>
+        <article class="stat-card tone-navy">
+          <div class="stat-top">
+            <span class="stat-label">Current Balance</span>
+            <span class="stat-ico"><i data-lucide="banknote"></i></span>
+          </div>
+          <div class="stat-value" id="sum-balance">&mdash;</div>
+          <div class="stat-meta" id="sum-balance-meta"></div>
+        </article>
+        <article class="stat-card tone-amber">
+          <div class="stat-top">
+            <span class="stat-label">Pending Payments</span>
+            <span class="stat-ico"><i data-lucide="hourglass"></i></span>
+          </div>
+          <div class="stat-value" id="sum-pending">&mdash;</div>
+          <div class="stat-meta" id="sum-pending-meta"></div>
+        </article>
+      </section>
+
+      <div class="settings-grid mt">
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">Detailed Breakdown</h2>
+              <p class="card-sub">Counts, averages and record extremes</p>
+            </div>
+          </div>
+          <div class="card-pad">
+            <div class="summary-list" id="summary-list"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">Expense by Category</h2>
+              <p class="card-sub">Share of total spending</p>
+            </div>
+          </div>
+          <div class="card-pad" id="category-bars"></div>
+        </section>
+      </div>
+
+      <section class="card mt no-print">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">Record Counts</h2>
+            <p class="card-sub">What is stored in Firebase right now</p>
+          </div>
+        </div>
+        <div class="card-pad">
+          <div class="summary-list" id="count-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Printable version of the report -->
+    <section class="print-report" id="print-report" aria-hidden="true"></section>
+  </main>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.js"></script>
+  <script type="module" src="js/summary.js"></script>
+<script>
+  // Firebase config is loaded from firebase-config.js (gitignored)
+</script>
+<script src="firebase-config.js"></script>
+<script type="module" src="js/firebase.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Event settings, exports and system information">
+  <title>Settings &middot; Navratri Management</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231f2a63'/%3E%3Ctext%20x='32'%20y='43'%20font-size='34'%20font-family='sans-serif'%20font-weight='700'%20fill='%23ffb547'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="settings">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="app"></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <div id="page-state" class="page-state" hidden></div>
+
+    <div id="page-content" hidden>
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <p class="page-sub">Event details, data export and system information.</p>
+        </div>
+      </header>
+
+      <div class="settings-grid">
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">Event Details</h2>
+              <p class="card-sub">Shown across the dashboard and printed report</p>
+            </div>
+          </div>
+          <div class="card-pad">
+            <form id="settings-form" novalidate>
+              <div class="form-grid">
+                <div class="form-alert" id="settings-alert" role="alert"></div>
+
+                <div class="field span-2">
+                  <label class="field-label" for="eventName">
+                    Event Name <span class="field-req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="input" id="eventName" name="eventName" type="text" maxlength="80"
+                         placeholder="Navratri Mahotsav" autocomplete="off" required>
+                  <p class="field-err" id="err-eventName"><i data-lucide="alert-triangle"></i><span></span></p>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="eventYear">
+                    Event Year <span class="field-req" aria-hidden="true">*</span>
+                  </label>
+                  <input class="input" id="eventYear" name="eventYear" type="number" min="2000" max="2100"
+                         placeholder="2026" autocomplete="off" required>
+                  <p class="field-err" id="err-eventYear"><i data-lucide="alert-triangle"></i><span></span></p>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="organizerName">Organizer Name</label>
+                  <input class="input" id="organizerName" name="organizerName" type="text" maxlength="80"
+                         placeholder="XYZ Society" autocomplete="off">
+                  <p class="field-err" id="err-organizerName"><i data-lucide="alert-triangle"></i><span></span></p>
+                </div>
+              </div>
+
+              <div class="row mt">
+                <button class="btn btn-primary" type="submit">
+                  <i data-lucide="save"></i> Save Settings
+                </button>
+                <span class="text-muted" id="settings-saved"></span>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <div class="stack-lg">
+          <section class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">Export Data</h2>
+                <p class="card-sub">CSV files, generated in your browser</p>
+              </div>
+            </div>
+            <div class="card-pad">
+              <div class="export-list">
+                <div class="export-item">
+                  <span class="ex-ico"><i data-lucide="wallet"></i></span>
+                  <span class="ex-main">
+                    <span class="ex-title">Collections</span>
+                    <span class="ex-sub" id="count-collections">0 records</span>
+                  </span>
+                  <button class="btn btn-outline btn-sm" type="button" data-export="collections">Download</button>
+                </div>
+                <div class="export-item">
+                  <span class="ex-ico"><i data-lucide="receipt"></i></span>
+                  <span class="ex-main">
+                    <span class="ex-title">Expenses</span>
+                    <span class="ex-sub" id="count-expenses">0 records</span>
+                  </span>
+                  <button class="btn btn-outline btn-sm" type="button" data-export="expenses">Download</button>
+                </div>
+                <div class="export-item">
+                  <span class="ex-ico"><i data-lucide="clock"></i></span>
+                  <span class="ex-main">
+                    <span class="ex-title">Pending Payments</span>
+                    <span class="ex-sub" id="count-pending">0 records</span>
+                  </span>
+                  <button class="btn btn-outline btn-sm" type="button" data-export="pending">Download</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">System</h2>
+                <p class="card-sub">Connection and configuration</p>
+              </div>
+            </div>
+            <div class="card-pad">
+              <div class="info-list" id="system-info"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.js"></script>
+  <script type="module" src="js/settings.js"></script>
+<script>
+  // Firebase config is loaded from firebase-config.js (gitignored)
+</script>
+<script src="firebase-config.js"></script>
+<script type="module" src="js/firebase.js"></script>
+</body>
+</html>

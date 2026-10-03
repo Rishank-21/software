@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Track promised Navratri payments that are still pending">
+  <title>Pending Payments &middot; Navratri Management</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231f2a63'/%3E%3Ctext%20x='32'%20y='43'%20font-size='34'%20font-family='sans-serif'%20font-weight='700'%20fill='%23ffb547'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="pending">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="app"></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <div id="page-state" class="page-state" hidden></div>
+
+    <div id="page-content" hidden>
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Pending Payments</h1>
+          <p class="page-sub">
+            &ldquo;Baad mein de dunga&rdquo; &mdash; promises recorded here until the money actually arrives.
+          </p>
+        </div>
+        <div class="page-actions no-print">
+          <button class="btn btn-outline" id="btn-export" type="button">
+            <i data-lucide="download"></i> Export CSV
+          </button>
+          <button class="btn btn-primary" id="btn-add" type="button">
+            <i data-lucide="plus"></i> Add Pending Payment
+          </button>
+        </div>
+      </header>
+
+      <section class="grid grid-3 no-print mb" aria-label="Pending summary">
+        <article class="stat-card tone-amber">
+          <div class="stat-top">
+            <span class="stat-label">Still Pending</span>
+            <span class="stat-ico"><i data-lucide="hourglass"></i></span>
+          </div>
+          <div class="stat-value" id="pend-total">&mdash;</div>
+          <div class="stat-meta" id="pend-total-meta">Promised, not received</div>
+        </article>
+        <article class="stat-card tone-green">
+          <div class="stat-top">
+            <span class="stat-label">Received from Promises</span>
+            <span class="stat-ico"><i data-lucide="circle-check"></i></span>
+          </div>
+          <div class="stat-value" id="pend-received">&mdash;</div>
+          <div class="stat-meta" id="pend-received-meta">Marked as paid</div>
+        </article>
+        <article class="stat-card tone-navy">
+          <div class="stat-top">
+            <span class="stat-label">People Waiting</span>
+            <span class="stat-ico"><i data-lucide="users"></i></span>
+          </div>
+          <div class="stat-value" id="pend-count">&mdash;</div>
+          <div class="stat-meta" id="pend-count-meta">Open promises</div>
+        </article>
+      </section>
+
+      <div class="toolbar no-print">
+        <div class="search-box">
+          <i data-lucide="search" class="search-ico"></i>
+          <input class="input" id="search" type="search" autocomplete="off"
+                 placeholder="Search by name or phone&hellip;" aria-label="Search pending payments">
+        </div>
+        <div class="chips" id="filters" role="group" aria-label="Filter pending payments"></div>
+        <span class="filter-count" id="result-count" aria-live="polite"></span>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table class="data-table" id="pending-table">
+            <caption class="visually-hidden">Promised payments</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col" class="num">Promised Amount</th>
+                <th scope="col">Expected Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Notes</th>
+                <th scope="col" class="num">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="pending-body"></tbody>
+          </table>
+        </div>
+        <div id="pending-empty" hidden></div>
+        <div class="table-foot" id="pending-foot" hidden>
+          <span id="foot-count"></span>
+          <span>Value in view: <strong id="foot-sum" class="mono"></strong></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.js"></script>
+  <script type="module" src="js/pending.js"></script>
+<script>
+  // Firebase config is loaded from firebase-config.js (gitignored)
+</script>
+<script src="firebase-config.js"></script>
+<script type="module" src="js/firebase.js"></script>
+</body>
+</html>

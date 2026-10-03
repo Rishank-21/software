@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Organizer login for Navratri collection and expense management"
+    />
+    <title>Login &middot; Navratri Management</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231f2a63'/%3E%3Ctext%20x='32'%20y='43'%20font-size='34'%20font-family='sans-serif'%20font-weight='700'%20fill='%23ffb547'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="login">
+    <a class="skip-link" href="#login-email">Skip to login form</a>
+
+    <div class="login-wrap">
+      <aside class="login-aside">
+        <div>
+          <div class="brand" style="border: 0; padding-left: 0">
+            <span class="brand-mark" aria-hidden="true">N</span>
+            <span class="brand-text">
+              <span class="brand-name">Navratri Management</span>
+              <span class="brand-event">Collection &amp; Expense Manager</span>
+            </span>
+          </div>
+          <h1 style="margin-top: 34px">
+            Every rupee,<br />tracked beautifully.
+          </h1>
+          <p>
+            Collections, expenses, pending promises and the live balance of your
+            Navratri event &mdash; shared across every organiser's device in
+            real time.
+          </p>
+        </div>
+
+        <div class="login-points">
+          <span class="login-point"
+            ><i data-lucide="circle-check"></i> Live dashboard, updated from
+            Firebase</span
+          >
+          <span class="login-point"
+            ><i data-lucide="circle-check"></i> Pending promises never counted
+            as collected</span
+          >
+          <span class="login-point"
+            ><i data-lucide="circle-check"></i> CSV export and print-ready
+            reports</span
+          >
+          <span class="login-point"
+            ><i data-lucide="circle-check"></i> Works on mobile, tablet and
+            desktop</span
+          >
+        </div>
+
+        <p class="login-foot">
+          Organiser access only. Financial data is protected by Firebase
+          security rules.
+        </p>
+      </aside>
+
+      <main class="login-main" id="main">
+        <div class="login-card" id="login-card">
+          <div class="login-logo" aria-hidden="true">N</div>
+          <h2>Organizer Login</h2>
+          <p class="sub">Sign in to view and manage the event finances.</p>
+
+          <form id="login-form" novalidate>
+            <div class="form-grid">
+              <div class="form-alert" id="login-alert" role="alert"></div>
+
+              <div class="field span-2">
+                <label class="field-label" for="login-email">
+                  Email address
+                  <span class="field-req" aria-hidden="true">*</span>
+                </label>
+                <input
+                  class="input"
+                  id="login-email"
+                  name="email"
+                  type="email"
+                  autocomplete="username"
+                  placeholder="organizer@example.com"
+                  required
+                />
+                <p class="field-err" id="err-email">
+                  <i data-lucide="alert-triangle"></i><span></span>
+                </p>
+              </div>
+
+              <div class="field span-2">
+                <label class="field-label" for="login-password">
+                  Password <span class="field-req" aria-hidden="true">*</span>
+                </label>
+                <input
+                  class="input"
+                  id="login-password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="Your password"
+                  required
+                />
+                <p class="field-err" id="err-password">
+                  <i data-lucide="alert-triangle"></i><span></span>
+                </p>
+              </div>
+            </div>
+
+            <button
+              class="btn btn-primary btn-block"
+              id="login-submit"
+              type="submit"
+              style="margin-top: 20px"
+            >
+              <i data-lucide="log-in"></i> Sign in
+            </button>
+          </form>
+
+          <p
+            class="text-muted"
+            style="font-size: 12.5px; margin-top: 18px; text-align: center"
+          >
+            Accounts are created in Firebase Console &rsaquo; Authentication.
+          </p>
+        </div>
+
+        <div class="login-card" id="setup-card" hidden>
+          <div class="login-logo" aria-hidden="true">N</div>
+          <h2>Connect Firebase first</h2>
+          <p class="sub">
+            This app needs your Firebase project credentials before it can sign
+            anyone in.
+          </p>
+          <ol class="state-steps">
+            <li>
+              Create a project at <strong>console.firebase.google.com</strong>
+            </li>
+            <li>
+              Enable <strong>Realtime Database</strong> and
+              <strong>Authentication &rsaquo; Email/Password</strong>
+            </li>
+            <li>Copy the web config into <code>js/firebase.js</code></li>
+            <li>Add at least one user under the <strong>Users</strong> tab</li>
+          </ol>
+          <a
+            class="btn btn-primary btn-block"
+            href="https://console.firebase.google.com/"
+            target="_blank"
+            rel="noopener"
+            style="margin-top: 18px"
+          >
+            <i data-lucide="external-link"></i> Open Firebase console
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <div id="toast-root" class="toast-root" aria-live="polite"></div>
+    <div id="modal-root"></div>
+
+    <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script>
+      // Firebase config is loaded from firebase-config.js (gitignored)
+    </script>
+    <script src="firebase-config.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+  </body>
+</html>

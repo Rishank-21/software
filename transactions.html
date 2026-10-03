@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Complete chronological transaction history">
+  <title>Transactions &middot; Navratri Management</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%231f2a63'/%3E%3Ctext%20x='32'%20y='43'%20font-size='34'%20font-family='sans-serif'%20font-weight='700'%20fill='%23ffb547'%20text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="transactions">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="app"></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <div id="page-state" class="page-state" hidden></div>
+
+    <div id="page-content" hidden>
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Transactions</h1>
+          <p class="page-sub">Collections, expenses and promises in one chronological history.</p>
+        </div>
+        <div class="page-actions no-print">
+          <button class="btn btn-outline" id="btn-export" type="button">
+            <i data-lucide="download"></i> Export CSV
+          </button>
+        </div>
+      </header>
+
+      <section class="grid grid-3 no-print mb" aria-label="Transaction totals">
+        <article class="stat-card tone-green">
+          <div class="stat-top">
+            <span class="stat-label">Money In</span>
+            <span class="stat-ico"><i data-lucide="arrow-down-left"></i></span>
+          </div>
+          <div class="stat-value" id="tx-in">&mdash;</div>
+          <div class="stat-meta" id="tx-in-meta">Collections received</div>
+        </article>
+        <article class="stat-card tone-red">
+          <div class="stat-top">
+            <span class="stat-label">Money Out</span>
+            <span class="stat-ico"><i data-lucide="arrow-up-right"></i></span>
+          </div>
+          <div class="stat-value" id="tx-out">&mdash;</div>
+          <div class="stat-meta" id="tx-out-meta">Expenses paid</div>
+        </article>
+        <article class="stat-card tone-navy">
+          <div class="stat-top">
+            <span class="stat-label">Net Movement</span>
+            <span class="stat-ico"><i data-lucide="activity"></i></span>
+          </div>
+          <div class="stat-value" id="tx-net">&mdash;</div>
+          <div class="stat-meta" id="tx-net-meta">In minus out</div>
+        </article>
+      </section>
+
+      <div class="toolbar no-print">
+        <div class="search-box">
+          <i data-lucide="search" class="search-ico"></i>
+          <input class="input" id="search" type="search" autocomplete="off"
+                 placeholder="Search transactions&hellip;" aria-label="Search transactions">
+        </div>
+        <div class="chips" id="filters" role="group" aria-label="Filter transactions"></div>
+        <span class="filter-count" id="result-count" aria-live="polite"></span>
+      </div>
+
+      <div id="tx-list"></div>
+    </div>
+  </main>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.js"></script>
+  <script type="module" src="js/transactions.js"></script>
+<script>
+  // Firebase config is loaded from firebase-config.js (gitignored)
+</script>
+<script src="firebase-config.js"></script>
+<script type="module" src="js/firebase.js"></script>
+</body>
+</html>
