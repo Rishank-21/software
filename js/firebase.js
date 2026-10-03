@@ -1,9 +1,9 @@
 /* =========================================================
    firebase.js — configuration + Firebase initialisation
    -------------------------------------------------------
-   Firebase credentials live in firebase-config.js — a file
-   you edit. It is gitignored so your secrets stay local.
-   The rest of this file works automatically.
+  Firebase credentials are loaded from firebase-config.js,
+  which is deployed with this static browser app.
+  Database access is controlled by Firebase security rules.
    ========================================================= */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
